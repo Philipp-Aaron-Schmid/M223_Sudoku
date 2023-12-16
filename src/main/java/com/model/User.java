@@ -30,6 +30,7 @@ public class User {
     private String email;
     @NotBlank
     private String password;
+    private String alias;
 
     //joins
     @ManyToMany(fetch = FetchType.LAZY) // das ist der spannende ORM Teil: automatisches Mapping von M-N Beziehungen :-)

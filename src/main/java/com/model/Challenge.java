@@ -3,7 +3,6 @@ package com.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,10 +32,16 @@ public class Challenge {
 
     private int challangeTime;
 
-    @NotBlank
     private boolean challangeDisplay;
 
     // joins
     @OneToMany(mappedBy = "challenge_fk", cascade = CascadeType.ALL)
     private Set<Play> plays = new HashSet<>();
+
+    public Challenge( String challangeTitle, int[] challangeSet, int challangeTime, boolean challangeDisplay) {
+        this.challangeTitle = challangeTitle;
+        this.challangeSet = challangeSet;
+        this.challangeTime = challangeTime;
+        this.challangeDisplay = challangeDisplay;
+    }
 }
