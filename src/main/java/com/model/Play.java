@@ -32,10 +32,16 @@ public class Play {
     @JoinColumn(name = "challengeId")
     private Challenge challenge_fk;
 
-    private int[] play_set;
+    private String play_set;
     private int play_time;
     private boolean play_display;
-    private boolean[] plays_score_set;
+    private String plays_score_set;
     private int play_score;
+
+    public Play( User user_fk, Challenge challenge_fk) {
+        this.user_fk = user_fk;
+        this.challenge_fk = challenge_fk;
+    }
+
 
 }

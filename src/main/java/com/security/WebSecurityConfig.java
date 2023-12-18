@@ -23,7 +23,7 @@ public class WebSecurityConfig {
     private UserDetailsServiceImpl userDetailsService;
     @Autowired
     private AuthenticationEntryPoint unauthorizedHandler;
-    private final static String[] EVERYONE = { "/api/auth/**", "/index"};
+    private final static String[] EVERYONE = { "/api/auth/**", "/index","/**"};
     private final static String[] SECURE = { "/manage/**" };
     private final static String[] ROLES = { "ADMIN" };
 

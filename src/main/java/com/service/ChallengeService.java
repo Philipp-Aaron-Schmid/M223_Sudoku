@@ -6,16 +6,21 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.Challenge;
 import com.repository.ChallengeRepository;
+
 @Service
 public class ChallengeService {
 
     private static ChallengeRepository challengeRepository;
 
+
     @Autowired
     public ChallengeService(ChallengeRepository challengeRepository) {
         this.challengeRepository = challengeRepository;
+
+
     }
-    public static void saveChallange(String challangeString){
+
+    public static void saveChallange(String challangeString) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
 
@@ -25,9 +30,6 @@ public class ChallengeService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
-    
 }

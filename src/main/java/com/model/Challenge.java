@@ -28,7 +28,7 @@ public class Challenge {
     @NotBlank
     private String challangeTitle;
 
-    private int[] challangeSet;
+    private String challangeSet;
 
     private int challangeTime;
 
@@ -38,7 +38,7 @@ public class Challenge {
     @OneToMany(mappedBy = "challenge_fk", cascade = CascadeType.ALL)
     private Set<Play> plays = new HashSet<>();
 
-    public Challenge( String challangeTitle, int[] challangeSet, int challangeTime, boolean challangeDisplay) {
+    public Challenge( String challangeTitle, String challangeSet, int challangeTime, boolean challangeDisplay) {
         this.challangeTitle = challangeTitle;
         this.challangeSet = challangeSet;
         this.challangeTime = challangeTime;
