@@ -1,19 +1,18 @@
 package com.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.model.Challenge;
 import com.model.Play;
@@ -25,14 +24,15 @@ import com.service.PlayService;
 import com.service.PlaySubmissionRequest;
 import com.service.Scorer;
 
-@Controller
+@RestController
+@RequestMapping("/play")
 public class PlayController {
     private ChallengeRepository challengeRepository;
     private final UserRepository userRepository; // Assuming you have a UserRepository
     private final PlayService playService;
     private CrudRepository<Play, Integer> playRepository;
 
-    @Autowired
+
     public PlayController(ChallengeRepository challengeRepository, UserRepository userRepository,
             PlayService playService,PlayRepository playRepository) {
         this.challengeRepository = challengeRepository;
@@ -41,12 +41,12 @@ public class PlayController {
         this.playRepository = playRepository;
     }
 
-    @GetMapping("/play/message")
+    @GetMapping("/message")
     public ResponseEntity<String> getGreeting() {
         return ResponseEntity.ok("let'splay a game!");
     }
 
-    @GetMapping("/play")
+    @GetMapping("/load")
     public ResponseEntity<Map<String, Object>> playChallenge(@RequestParam("userId") int userId,
             @RequestParam("challengeId") int challengeId) {
         Optional<User> optionalUser = userRepository.findById(userId);
@@ -76,16 +76,16 @@ public ResponseEntity<String> submitPlay(@RequestBody PlaySubmissionRequest play
 
     if (optionalPlay.isPresent()) {
         Play play = optionalPlay.get();
-        Challenge challenge = play.getChallenge_fk();
+        Challenge challenge = play.getChallengefk();
         // Assuming PlaySubmissionRequest has fields playSet and playTime
-        play.setPlay_set(playSubmissionRequest.getPlaySet());
-        play.setPlay_time(playSubmissionRequest.getPlayTime());
+        play.setPlaySet(playSubmissionRequest.getPlaySet());
+        play.setPlayTime(playSubmissionRequest.getPlayTime());
 
         Scorer.calculateScoreAndSet(challenge, play);
 
         playRepository.save(play);
 
-        return ResponseEntity.ok("Play updated successfully Score:"+play.getPlay_score());
+        return ResponseEntity.ok("Play updated successfully Score:"+play.getPlayScore());
     } else {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Play not found");
     }

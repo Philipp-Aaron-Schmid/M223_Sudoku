@@ -6,7 +6,7 @@ import com.model.Play;
 public class Scorer {
 
     public static void calculateScoreAndSet(Challenge challenge, Play play) {
-        String playSet = play.getPlay_set();
+        String playSet = play.getPlaySet();
         String challengeSet = challenge.getChallangeSet();
 
         int score = 0;
@@ -24,8 +24,8 @@ public class Scorer {
             }
         }
 
-        play.setPlay_score(score);
-        play.setPlays_score_set(scoreSetBuilder.toString());
+        play.setPlayScore(score);
+        play.setPlaysScoreSet(scoreSetBuilder.toString());
     }
 
     private static boolean isDuplicate(String playSet, int i) {

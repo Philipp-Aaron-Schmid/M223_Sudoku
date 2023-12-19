@@ -1,7 +1,9 @@
 package com.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.Challenge;
@@ -13,9 +15,8 @@ public class ChallengeService {
     private static ChallengeRepository challengeRepository;
 
 
-    @Autowired
     public ChallengeService(ChallengeRepository challengeRepository) {
-        this.challengeRepository = challengeRepository;
+        ChallengeService.challengeRepository = challengeRepository;
 
 
     }
@@ -30,6 +31,10 @@ public class ChallengeService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Challenge> getAllChallenges() {
+        return challengeRepository.findAll();
     }
 
 }
