@@ -76,7 +76,7 @@ public ResponseEntity<String> submitPlay(@RequestBody PlaySubmissionRequest play
 
     if (optionalPlay.isPresent()) {
         Play play = optionalPlay.get();
-        Challenge challenge = play.getChallenge_fk();
+        Challenge challenge = play.getChallengefk();
         // Assuming PlaySubmissionRequest has fields playSet and playTime
         play.setPlay_set(playSubmissionRequest.getPlaySet());
         play.setPlay_time(playSubmissionRequest.getPlayTime());

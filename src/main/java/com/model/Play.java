@@ -24,13 +24,14 @@ public class Play {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer play_id;
-    //joins
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
-    private User user_fk;
+    private User userfk;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "challengeId")
-    private Challenge challenge_fk;
+    private Challenge challengefk;
 
     private String play_set;
     private int play_time;
@@ -38,10 +39,8 @@ public class Play {
     private String plays_score_set;
     private int play_score;
 
-    public Play( User user_fk, Challenge challenge_fk) {
-        this.user_fk = user_fk;
-        this.challenge_fk = challenge_fk;
+    public Play(User user_fk, Challenge challenge_fk) {
+        this.userfk = user_fk;
+        this.challengefk = challenge_fk;
     }
-
-
 }

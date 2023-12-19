@@ -35,7 +35,7 @@ public class Challenge {
     private boolean challangeDisplay;
 
     // joins
-    @OneToMany(mappedBy = "challenge_fk", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "challengefk", cascade = CascadeType.ALL)
     private Set<Play> plays = new HashSet<>();
 
     public Challenge( String challangeTitle, String challangeSet, int challangeTime, boolean challangeDisplay) {

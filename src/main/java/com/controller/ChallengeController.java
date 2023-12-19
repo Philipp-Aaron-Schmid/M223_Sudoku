@@ -8,13 +8,17 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.model.Challenge;
+import com.model.Play;
+import com.model.User;
 import com.repository.ChallengeRepository;
 import com.repository.PlayRepository;
+import com.repository.UserRepository;
 import com.service.ChallengeService;
 
 import lombok.Data;
@@ -26,11 +30,13 @@ import lombok.Data;
 public class ChallengeController {
     private final ChallengeRepository challengeRepository;
     private PlayRepository playRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public ChallengeController(ChallengeRepository challengeRepository, PlayRepository playRepository) {
+    public ChallengeController(ChallengeRepository challengeRepository, PlayRepository playRepository, UserRepository userRepository) {
         this.challengeRepository = challengeRepository;
         this.playRepository = playRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/manage/challange")
@@ -47,7 +53,7 @@ public class ChallengeController {
 
 
     }*/
-     @GetMapping("challenges/all")
+     @GetMapping("/all")
     public ResponseEntity<Set<ChallengeResponseDTO>> getAllChallenges() {
         Set<ChallengeResponseDTO> challenges = challengeRepository.findByChallangeDisplayTrue()
                 .stream()
@@ -60,7 +66,30 @@ public class ChallengeController {
 
         return ResponseEntity.ok(challenges);
     }
+    @GetMapping("/byUser")
+public ResponseEntity<Set<ChallengeResponseDTO>> getAllChallenges(@RequestParam Integer userId) {
+    // Assuming userId is the ID of the user you want to exclude played challenges for
+    User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+    Set<ChallengeResponseDTO> challenges = challengeRepository.findByChallangeDisplayTrue()
+            .stream()
+            .filter(challenge -> !hasUserPlayedChallenge(user, challenge))
+            .map(challenge -> new ChallengeResponseDTO(
+                    challenge.getChallangeId(),
+                    challenge.getChallangeTitle(),
+                    challenge.getChallangeTime()
+            ))
+            .collect(Collectors.toSet());
+
+    return ResponseEntity.ok(challenges);
 }
+
+private boolean hasUserPlayedChallenge(User user, Challenge challenge) {
+    List<Play> plays = playRepository.findByUserfkAndChallengefk(user, challenge);
+    return !plays.isEmpty();
+}
+}
+
 @Data
 class ChallengeResponseDTO {
 
