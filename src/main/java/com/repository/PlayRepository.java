@@ -12,4 +12,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PlayRepository extends JpaRepository<Play, Integer> {
 
-    List<Play> findByUserfkAndChallengefk(User userfk, Challenge challengeFk);}
+    List<Play> findByUserfkAndChallengefk(User userfk, Challenge challengeFk);
+
+    
+    List<Play> findAllByOrderByPlayScoreDesc();
+
+
+    List<Play> findByUserfkIdOrderByPlayScoreDesc(int userId);
+
+}
