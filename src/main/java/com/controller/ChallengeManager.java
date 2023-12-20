@@ -1,7 +1,7 @@
 package com.controller;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.model.Challenge;
 import com.repository.ChallengeRepository;
+import com.repository.PlayRepository;
 import com.service.ChallengeService;
 
 @RestController
@@ -25,11 +26,13 @@ public class ChallengeManager {
 
     private ChallengeRepository challengeRepository;
     private ChallengeService challengeService;
+    private PlayRepository playRepository;
 
-
-    public ChallengeManager(ChallengeRepository challengeRepository, ChallengeService challengeService) {
+    public ChallengeManager(ChallengeRepository challengeRepository, ChallengeService challengeService,
+            PlayRepository playRepository) {
         this.challengeRepository = challengeRepository;
         this.challengeService = challengeService;
+        this.playRepository = playRepository;
     }
 
     @GetMapping("/challange")
@@ -47,15 +50,23 @@ public class ChallengeManager {
         }
     }
 
-    @DeleteMapping("/challange/{id}")
+    /** ToDo add a getMapping to toggle display on and off */
+
+    @DeleteMapping("/challenge/{id}")
     public ResponseEntity<String> deleteChallenge(@PathVariable Integer id) {
         try {
             // Check if the challenge with the given ID exists
-            if (challengeRepository.existsById(id)) {
+            Optional<Challenge> challengeOptional = challengeRepository.findById(id);
+            if (challengeOptional.isPresent()) {
+                Challenge challenge = challengeOptional.get();
+
+                // Delete all associated plays
+                playRepository.deleteByChallengefk(challenge);
+
                 // Delete the challenge from the database
-                challengeRepository.deleteById(id);
-                ;
-                return ResponseEntity.ok("Challenge deleted successfully");
+                challengeRepository.delete(challenge);
+
+                return ResponseEntity.ok("Challenge and associated plays deleted successfully");
             } else {
                 return ResponseEntity.notFound().build();
             }
@@ -65,10 +76,11 @@ public class ChallengeManager {
             return ResponseEntity.status(500).body("Error deleting challenge");
         }
     }
+
     @GetMapping("/challenges")
     public ResponseEntity<List<Challenge>> getAllChallenges() {
         try {
-            
+
             List<Challenge> challenges = challengeService.getAllChallenges();
 
             if (!challenges.isEmpty()) {
@@ -79,6 +91,31 @@ public class ChallengeManager {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body(null);
+        }
+    }
+
+    @GetMapping("/challenge/{id}/toggle-display")
+    public ResponseEntity<String> toggleChallengeDisplay(@PathVariable Integer id) {
+        try {
+            // Check if the challenge with the given ID exists
+            Optional<Challenge> challengeOptional = challengeRepository.findById(id);
+            if (challengeOptional.isPresent()) {
+                Challenge challenge = challengeOptional.get();
+
+                // Toggle the display status
+                challenge.setChallangeDisplay(!challenge.isChallangeDisplay());
+
+                // Save the updated challenge
+                challengeRepository.save(challenge);
+
+                return ResponseEntity.ok("Challenge display status toggled successfully");
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle the exception appropriately based on your use case
+            return ResponseEntity.status(500).body("Error toggling challenge display status");
         }
     }
 

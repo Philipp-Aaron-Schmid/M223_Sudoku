@@ -20,4 +20,9 @@ public interface PlayRepository extends JpaRepository<Play, Integer> {
 
     List<Play> findByUserfkIdOrderByPlayScoreDesc(int userId);
 
+    void deleteByChallengefk(Challenge challenge);
+
+
+
+
 }

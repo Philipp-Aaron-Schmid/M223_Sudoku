@@ -6,9 +6,8 @@ import com.model.Play;
 public class Scorer {
 
     public static void calculateScoreAndSet(Challenge challenge, Play play) {
-        String playSet = play.getPlaySet();
-        String challengeSet = challenge.getChallangeSet();
-
+        String playSet = play.getPlaySet().toString();
+        String challengeSet = challenge.getChallangeSet().toString();
         int score = 0;
         StringBuilder scoreSetBuilder = new StringBuilder();
 
