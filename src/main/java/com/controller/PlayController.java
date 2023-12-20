@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,7 @@ import com.service.Scorer;
 
 @RestController
 @RequestMapping("/play")
+@CrossOrigin(origins = "http://localhost:5173")
 public class PlayController {
     private ChallengeRepository challengeRepository;
     private final UserRepository userRepository; // Assuming you have a UserRepository

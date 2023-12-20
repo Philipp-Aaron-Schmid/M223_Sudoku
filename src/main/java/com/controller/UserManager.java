@@ -10,6 +10,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/manage/users")
+@CrossOrigin(origins = "http://localhost:5173")
 public class UserManager {
 
     private final UserRepository userRepository;

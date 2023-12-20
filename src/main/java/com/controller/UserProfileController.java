@@ -11,6 +11,7 @@ import com.repository.UserRepository;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "http://localhost:5173")
 public class UserProfileController {
 
     private final UserRepository userRepository;
