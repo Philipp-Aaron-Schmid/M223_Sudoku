@@ -58,7 +58,6 @@ public class Scorer {
         for (int i = 0;i<27;i += 9){
             for (int j = 0; j<3;j++){
                 if (j+row+i+col != current && playSet.charAt(j+row+i+col) == playSet.charAt(current)){return true;}
-                System.out.println("Check field:"+(j+row+i+col) +" curr: "+current);
             }
         }
         return false;
