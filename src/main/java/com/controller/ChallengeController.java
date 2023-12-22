@@ -26,6 +26,7 @@ public class ChallengeController {
     private final ChallengeRepository challengeRepository;
     private PlayRepository playRepository;
     private UserRepository userRepository;
+    
 
     public ChallengeController(ChallengeRepository challengeRepository, PlayRepository playRepository,
             UserRepository userRepository) {
