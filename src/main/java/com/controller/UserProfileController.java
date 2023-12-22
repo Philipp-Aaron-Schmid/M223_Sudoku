@@ -52,26 +52,32 @@ public class UserProfileController {
     public ResponseEntity<String> updateUserProfile(@PathVariable int id, @RequestBody User updatedUser) {
         // Retrieve authenticated user's username
         String authenticatedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-
+    
         // Retrieve existing user by ID
         return userRepository.findById(id).map(existingUser -> {
             // Check if the authenticated user matches the requested user
             if (!existingUser.getUsername().equals(authenticatedUsername)) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access denied");
             }
-
+    
             // Update user information
             existingUser.setUsername(updatedUser.getUsername());
             existingUser.setEmail(updatedUser.getEmail());
-            existingUser.setPassword(encoder.encode(updatedUser.getPassword()));
+            
+            // Update password only if it's not empty
+            if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
+                existingUser.setPassword(encoder.encode(updatedUser.getPassword()));
+            }
+    
             existingUser.setAlias(updatedUser.getAlias());
-
+    
             // Save the updated user
             userRepository.save(existingUser);
-
+    
             return ResponseEntity.ok("User profile updated successfully");
         }).orElse(ResponseEntity.notFound().build());
     }
+    
 
     @DeleteMapping("/{id}")
     @Transactional // Add this annotation
