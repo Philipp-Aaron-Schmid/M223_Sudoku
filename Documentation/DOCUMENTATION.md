@@ -47,16 +47,19 @@ The Goal of this project was to explore the Interactions between backend and fro
 The Project is a one man opperation and has to be completed with in 2 weeks as such expertise and time reasources are limited to less than productive time. The Project is an exploration of new technologies therfore it is not feiasaable to greate a massive applicatio from te get go.
 
 ### Milestones and Timeline
-- Rough Plan Documantation  - completed day one
-- Backen ORM Functional - completed after 3 days
-- Backend authentification - completei with in class reasources
-- Backend Rough mappings and data transfer tested 1 week into project
-- Frontend Initialization - 1 week after project kickoff
-- Frontend connection tests with backend - up to 4 days before project end
-- Frontend Roughly implemented no design navigation - 2 days before project end
-- Frontend Design Implementation/Trouble  - 1 day Before project Endshooting
-- Implementing  Automated tests - 12h before project end
-- Documentation - TBD
+
+| Event | Time |
+|-------|-------|
+|Rough Plan Documantation | t-13d |
+|Backen ORM Functional | t- 11d |
+|Backend authentification | t-7d |
+| Backend Rough mappings and data transfer tested | t-7d|  
+| Frontend Initialization | t-7d|
+| Frontend connection tests with backend |t-4d |
+| Frontend Roughly implemented no design navigation | t-2d |
+| Frontendend Design Implementation/Trouble  | t-1d|
+| Implementing  Automated tests | t-12h |
+| Documentation | TBD
 
 #### Tools
   - Visual Studio, this entire project is written in the very helpfull editor full if extension bot the backend and frontend were being tun in favorabl environments to speed up coding and error correction
@@ -98,7 +101,7 @@ This was the virst rtuly major coding project that I have taken care of by my se
   
 This Project has the very lowest coding standarts avaliable what ever works was implemented as it was fornd across the web, no uniform approach was taken, continual addaption to the Technologies have challaanged initial assumptions on best practices
   - GitHub  
-  
+
 **4 Progress Tracking**  
 Progress was measure by Partial User story completion meaning that with the guidance of the userstories we worked on one side of the application untill it could fulfill the users needs in its role. The Application was build layered from the Database upwards to at most times have a steadily progressing functional application.
 ### Testing
@@ -130,3 +133,5 @@ Progress was measure by Partial User story completion meaning that with the guid
 - **6.3 Project Closure**
   - Formal closure
   - Future recommendations
+
+# Detail Aknowlegements
