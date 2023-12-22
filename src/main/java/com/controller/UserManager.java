@@ -1,25 +1,35 @@
 package com.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import com.model.User;
+import com.repository.PlayRepository;
 import com.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/manage/users")
 @CrossOrigin(origins = "http://localhost:5173")
 public class UserManager {
 
+    @Autowired
+    PasswordEncoder encoder;
+    
     private final UserRepository userRepository;
+    private final PlayRepository playRepository;
 
-    public UserManager(UserRepository userRepository) {
+    public UserManager(UserRepository userRepository, PlayRepository playRepository) {
         this.userRepository = userRepository;
+        this.playRepository = playRepository;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
         // Retrieve all users
         List<User> userList = userRepository.findAll();
@@ -63,7 +73,7 @@ public class UserManager {
                 existingUser.setEmail(partialUpdate.getEmail());
             }
             if (partialUpdate.getPassword() != null) {
-                existingUser.setPassword(partialUpdate.getPassword());
+                existingUser.setPassword(encoder.encode(partialUpdate.getPassword()));
             }
             if (partialUpdate.getAlias() != null) {
                 existingUser.setAlias(partialUpdate.getAlias());
@@ -77,10 +87,14 @@ public class UserManager {
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<String> deleteUserAccount(@PathVariable int id) {
         // Check if the user exists
+        Optional<User> optionalUser = userRepository.findById(id);
         if (userRepository.existsById(id)) {
+            User user = optionalUser.get();
             // Delete the user by ID
+            playRepository.deleteByUserfk(user);
             userRepository.deleteById(id);
             return ResponseEntity.ok("User account deleted successfully");
         } else {

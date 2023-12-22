@@ -22,7 +22,5 @@ public interface PlayRepository extends JpaRepository<Play, Integer> {
 
     void deleteByChallengefk(Challenge challenge);
 
-
-
-
+    void deleteByUserfk(User user);
 }

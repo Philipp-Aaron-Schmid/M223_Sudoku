@@ -34,6 +34,7 @@ public List<TopScoreDTO> getTop10Scores() {
         // Convert Play entities to TopScoreDTO
         List<TopScoreDTO> topScores = topPlays.stream()
                                            .map(play -> new TopScoreDTO(
+                                               play.getPlay_id(),
                                                play.getPlayScore(),
                                                play.getUserfk().getAlias(),
                                                play.getChallengefk().getChallangeTitle()
@@ -48,6 +49,7 @@ public List<TopScoreDTO> getTop10Scores() {
         // Convert Play entities to PlayerScoreDTO
         List<PlayerScoreDTO> playerScores = playerPlays.stream()
                 .map(play -> new PlayerScoreDTO(
+                        play.getPlay_id(),
                         play.getPlaySet(),
                         play.getPlaysScoreSet(),
                         play.getPlayScore(),

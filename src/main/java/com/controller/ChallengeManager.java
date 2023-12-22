@@ -19,6 +19,8 @@ import com.repository.ChallengeRepository;
 import com.repository.PlayRepository;
 import com.service.ChallengeService;
 
+import jakarta.transaction.Transactional;
+
 @RestController
 @RequestMapping("/manage")
 @CrossOrigin(origins = "http://localhost:5173")
@@ -50,9 +52,8 @@ public class ChallengeManager {
         }
     }
 
-    /** ToDo add a getMapping to toggle display on and off */
-
     @DeleteMapping("/challenge/{id}")
+    @Transactional
     public ResponseEntity<String> deleteChallenge(@PathVariable Integer id) {
         try {
             // Check if the challenge with the given ID exists
