@@ -1,8 +1,11 @@
 # UserStories
 ## UserStoriesBasics
 **Role:** This is the user or the entity for whom the feature is being developed. It could be a specific user type, like an admin, customer, or guest.  
+
 **Feature:** This describes the functionality or capability that the user is seeking. It's a brief, high-level description of what needs to be done.  
-**Reason/Benefit:** This explains why the user wants the feature and what value or benefit it brings. It provides context and helps the development team understand the purpose behind the feature.
+
+**Reason/Benefit:** This explains why the user wants the feature and what value or benefit it brings. It provides context and helps the development team understand the purpose behind the feature.  
+
 
 ## UserStories
 ### **Who: Admin**
@@ -11,9 +14,9 @@
 **Why:** to keep players engeged and   
 Aceptance Criteria: The Admin can set challanges by adding a new sudoku template and give challange parame
 
-**What:** deleteHighscore  
-**Why:** to ensure fair competition  
-**Aceptance Criteria:** The Admin can delete a high score form the database
+**What:** delete challange 
+**Why:** to ensure the quality of provided challanges 
+**Aceptance Criteria:** The Admin can delete a challenges form the database
 
 **What:** deleteUser  
 **Why:** to ensure decorum 
