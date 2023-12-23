@@ -14,7 +14,7 @@ import com.service.PlayerScoreDTO;
 
 @RestController
 @RequestMapping("/score")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5174")
 public class ScoreController {
 
     private final PlayService playService;

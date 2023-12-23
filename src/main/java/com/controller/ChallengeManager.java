@@ -23,7 +23,7 @@ import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/manage")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5174")
 public class ChallengeManager {
 
     private ChallengeRepository challengeRepository;
