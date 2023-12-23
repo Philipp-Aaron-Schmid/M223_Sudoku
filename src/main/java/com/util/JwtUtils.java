@@ -25,7 +25,7 @@ import io.jsonwebtoken.security.SignatureException;
 @Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
-    @Value("${wissquiz.app.jwtSecret}")
+    @Value("${wissquiz.app.jwtSecret}") //@value from apppdata.propperties
     private String jwtSecret;
     @Value("${wissquiz.app.jwtExpirationMs}")
     private int jwtExpirationMs;

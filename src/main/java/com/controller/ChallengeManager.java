@@ -23,7 +23,7 @@ import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/manage")
-@CrossOrigin(origins = "http://localhost:5174")
+@CrossOrigin(origins = "http://localhost:5174") //cross origin annotation to specify from where this request mapping can be acessed
 public class ChallengeManager {
 
     private ChallengeRepository challengeRepository;
@@ -36,7 +36,7 @@ public class ChallengeManager {
         this.challengeService = challengeService;
         this.playRepository = playRepository;
     }
-
+// initial test method still in here for testing purposes
     @GetMapping("/challange")
     public ResponseEntity<String> getGreeting() {
         return ResponseEntity.ok("Manage challanges here");
@@ -53,7 +53,7 @@ public class ChallengeManager {
     }
 
     @DeleteMapping("/challenge/{id}")
-    @Transactional
+    @Transactional //transactional ensure that the deletes follow acid and do not run afoul of entity relations
     public ResponseEntity<String> deleteChallenge(@PathVariable Integer id) {
         try {
             // Check if the challenge with the given ID exists

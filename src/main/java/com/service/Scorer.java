@@ -4,7 +4,14 @@ import com.model.Challenge;
 import com.model.Play;
 
 public class Scorer {
-
+/**
+ * This class scores the submitted sudoku games It builds a string based on the evaluation which can 
+ * later be used to display the submitted string in various ways The Scorer loops trough the entire string and chacks 
+ * rows collumsn and felds for dupicates.
+ * 
+ * @param challenge
+ * @param play
+ */
     public static void calculateScoreAndSet(Challenge challenge, Play play) {
         String playSet = play.getPlaySet().toString();
         String challengeSet = challenge.getChallangeSet().toString();

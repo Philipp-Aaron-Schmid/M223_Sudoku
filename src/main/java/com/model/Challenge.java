@@ -16,10 +16,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
+@Data // generates all getters and setters
 @Table(name = "Challange")
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor //generates an all args constructor
+@NoArgsConstructor //Generates a no args constructor
 public class Challenge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

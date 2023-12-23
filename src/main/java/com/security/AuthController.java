@@ -39,7 +39,7 @@ public class AuthController {
     PasswordEncoder encoder;
     @Autowired
     JwtUtils jwtUtils;
-
+// this si a cotroller class that hanles signups ans sign ins generatin jwt tokens and encoding passwords among other 
     @PostMapping("/signin")
     @CrossOrigin(origins = "http://localhost:5174")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {

@@ -87,7 +87,7 @@ public ResponseEntity<Set<ChallengeResponseDTO>> getUserChallanges(@RequestParam
     }}
 
 @Data
-class ChallengeResponseDTO {
+class ChallengeResponseDTO { //inner class response model
 
     private Integer challangeId;
     private String challangeTitle;

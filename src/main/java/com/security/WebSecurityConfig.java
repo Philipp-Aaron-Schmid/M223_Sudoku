@@ -23,9 +23,9 @@ public class WebSecurityConfig {
     private UserDetailsServiceImpl userDetailsService;
     @Autowired
     private AuthenticationEntryPoint unauthorizedHandler;
-    private final static String[] EVERYONE = { "/api/auth/**", "/index/**"};
-    private final static String[] SECURE = { "/manage/**" };
-    private final static String[] ROLES = { "ADMIN" };
+    private final static String[] EVERYONE = { "/api/auth/**", "/index/**"}; //Defines public endpoints
+    private final static String[] SECURE = { "/manage/**" }; //defines highly secure endpoints
+    private final static String[] ROLES = { "ADMIN" }; //defines who can acess the secure ones
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
@@ -58,11 +58,11 @@ public class WebSecurityConfig {
         .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers(SECURE).hasAnyRole(ROLES)
-            .requestMatchers(EVERYONE).permitAll()
-            .anyRequest().authenticated());
+            .requestMatchers(SECURE).hasAnyRole(ROLES) //filters acess to the secure endpoints
+            .requestMatchers(EVERYONE).permitAll() //lets all requests trough to the defined endpoints
+            .anyRequest().authenticated()); //requires for the authentication to have been sucessfull
         http.authenticationProvider(authenticationProvider());
-        http.addFilterBefore(authenticationJwtTokenFilter(),
+        http.addFilterBefore(authenticationJwtTokenFilter(), //authenticates the validility of the token
                 UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
