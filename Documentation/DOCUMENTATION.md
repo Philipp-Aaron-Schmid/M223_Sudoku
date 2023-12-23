@@ -46,6 +46,11 @@ The Goal of this project was to explore the Interactions between backend and fro
 ### Project Scope
 The Project is a one man opperation and has to be completed with in 2 weeks as such expertise and time reasources are limited to less than productive time. The Project is an exploration of new technologies therfore it is not feiasaable to greate a massive applicatio from te get go.
 
+![Pages and their usess for roles](./Graphics//Pages.svg)  
+
+
+![Relational Database Description](./Graphics/SudokuDB.svg)
+
 ### Milestones and Timeline
 
 | Event | Time |
@@ -75,14 +80,12 @@ The Project is a one man opperation and has to be completed with in 2 weeks as s
  
  | Technology|Role| 
 |----------|----------|
-| JPA/Hibernate   |     |    
-|  Lombok  |    | 
-|  JwT  |    | 
-|    |    | 
-|    |    | 
-|    |    | 
-|    |    | 
-|    |    | 
+| JPA/Hibernate   |   Connecting with the backend Database saving data perisistently  |    
+|  Lombok  |  Replacing boilerplace code with simple annotations  | 
+|  JwT  |  Securing the Users acess trough the use of a Token stored by the user and sent to the backend   | 
+|  Spring boot  |  Simulation of a backend server with an easy Dependencies system pom.xml  | 
+|  Axios  |   Handles Interactions between the frontend and backend asyncronously  | 
+
 
 ### Risk Management
   - Identified risks
@@ -96,42 +99,42 @@ The Project is a one man opperation and has to be completed with in 2 weeks as s
 | Some hard Bugs have been spotted in the app   | Testing and remedie measures      | Most heavy bugs have been eliminated others due to time constraints documented in toDo's  |
 
 ## Execution
-**4.1 Development Process**  
+**Development Process**  
+
 This was the virst rtuly major coding project that I have taken care of by my self as such theapproach to coding was a storm of approaches, there is some semblance of organisationas I worked trough one problem after the next. But as time moved on methods changed informed about new ways to solve problems and as such the code base is a hodge poge of attempts and code stubs that are heald together by hopes  and dreams. 
   
 This Project has the very lowest coding standarts avaliable what ever works was implemented as it was fornd across the web, no uniform approach was taken, continual addaption to the Technologies have challaanged initial assumptions on best practices
   - GitHub  
 
-**4 Progress Tracking**  
+**Progress Tracking**  
+
 Progress was measure by Partial User story completion meaning that with the guidance of the userstories we worked on one side of the application untill it could fulfill the users needs in its role. The Application was build layered from the Database upwards to at most times have a steadily progressing functional application.
 ### Testing
 
 **Backend**
 **Frontend**
 **Manual**
+| Test Case ID | Description                     | Steps to Reproduce                                | Expected Result               | Actual Result | Status   |
+|--------------|---------------------------------|---------------------------------------------------|--------------------------------|---------------|----------|
+| TC-001       | Verify login functionality      | 1. Navigate to the login page<br>2. Enter valid credentials<br>3. Click the login button | Successful login and redirection to the challangePage | Successful login and redirection to the Challange| Passed   |
+| TC-002       | View Challanges           | 1. Navigate to the challenge<br>2. click on the play field of testSudoku| The testSudoku will start up and a timer has started| EThe testSudoku will start up and a timer has started | Passed   |
+| TC-003       | Auto submit functional    | 1. Wait for the timer of testSudoku to run out. | User Redirect to Score Page with score 0 | User Redirect to Score Page with score 0 | passed  |
+| TC-004       | Add Empty challange       | 1. Sign in as admin<br>2. Navigate to the Challenge management<br>3. enter title "Empty"<br>4. set timer to 60<br>5. clicksubmit | A new empty Sudoku Field added to the list | A new empty Sudoku Field added to the list | Passed   |
+| TC-005       | Verify logout process           | 1. Log in to the application<br>2. Click on the logout button | Successful logout and redirection to the main page | Redirected to the main page | passed |
 
 
-## 5. Review
-- **5.1 Performance Analysis**
+
+## Review
+**Performance Analysis**
   - Key performance indicators
   - Performance reports
-- **5.2 Feedback Collection**
+
   - Stakeholder feedback
   - User feedback
-- **5.3 Lessons Learned**
-  - Successes
-  - Challenges
-  - Improvement areas
-
-## 6. Clarification of Results
-- **6.1 Final Reporting**
-  - Project outcomes
-  - Achievement of objectives
-- **6.2 Documentation and Handover**
-  - Final documentation
-  - Training and handover materials
-- **6.3 Project Closure**
-  - Formal closure
-  - Future recommendations
 
 # Detail Aknowlegements
+
+[OpenAI](https://www.openai.com) - For out standing aid in formating nd many  questionss that would have taken hours of search  
+[United Top Tech](https://youtu.be/GXxT8U7_OlE?si=1wjzbbiRsGYDM_j4) - Invaluable input to create the ORM and pointer to Lombok  
+[Project Lombok](https://projectlombok.org/features/) - Refferance to the avliable annotations reducing boilerplate
+[JavaTpoint](https://www.javatpoint.com/spring-boot-annotations) - 

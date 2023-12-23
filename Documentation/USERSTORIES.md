@@ -12,7 +12,7 @@
 
 **What:** setChallange  
 **Why:** to keep players engeged and   
-Aceptance Criteria: The Admin can set challanges by adding a new sudoku template and give challange parame
+**Aceptance Criteria:** The Admin can set challanges by adding a new sudoku template and give challange parame
 
 **What:** delete challange 
 **Why:** to ensure the quality of provided challanges 

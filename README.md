@@ -2,7 +2,6 @@
 
 ## Inhaltsverzeichnis
 - [Description](#Description)
-- [UserStoriesBasics](#UserStoriesBasics)
 - [UserStories](#UserStories)
 - [Installation](#installation)
 - [Aknowlegements](#Aknowlegements)
@@ -16,24 +15,18 @@ Roles:
   Admin: Delete Users/Edit scores/Set Challenges
   Users:  PlayChalanges/viewLeader Board
 
+## Userstories
+
+[UserStories](./Documentation/USERSTORIES.md)  
+
 
 ## Installation
  
-Beschreibe hier, wie das Projekt installiert werden kann. Dies kann beinhalten, wie man das Repository klonen, Abhängigkeiten installieren oder andere Schritte ausführen kann, um das Projekt einsatzbereit zu machen.
- 
-```bash
-git clone https://github.com/dein-benutzername/dein-projekt.git
-```
-```java
-cd dein-projekt
-```
-# Führe die Installationsbefehle hier aus
+[Installation](./Documentation/INSTALLATION.md)  
 
 
 # Documentation
 [Project Documentation](./Documentation/DOCUMENTATION.md)  
-[UserStories](./Documentation/USERSTORIES.md)  
-[Installation](./Documentation/INSTALLATION.md)  
 [Security](./Documentation/SECURITY.md)
 
 # Aknowlegements

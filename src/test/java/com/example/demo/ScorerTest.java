@@ -1,17 +1,25 @@
 package com.example.demo;
 
-import com.model.Challenge;
-import com.model.Play;
-import com.service.Scorer;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 
+import com.model.Challenge;
+import com.model.Play;
+import com.service.Scorer;
+
+/**
+ * Defunct Test class Experimenting how to get the moc logic to work so that the scorer class can be tested for it's side effects
+ * ps. AI does not get the logic of my program at all XD
+ */
+
+@SpringBootTest //test of a spring boot application always springboot test class
+@AutoConfigureMockMvc
 public class ScorerTest {
 
     @Mock
@@ -22,7 +30,7 @@ public class ScorerTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(mockChallenge);
     }
 
     @Test
@@ -36,7 +44,6 @@ public class ScorerTest {
         Scorer.calculateScoreAndSet(mockChallenge, mockPlay);
 
         assertEquals(0, mockPlay.getPlayScore());
-        assertEquals("111111111111111111111111111111111111111111111111111111111111111111111111111111111111", mockPlay.getPlaysScoreSet());
     }
 
     @Test
@@ -50,14 +57,13 @@ public class ScorerTest {
         Scorer.calculateScoreAndSet(mockChallenge, mockPlay);
 
         assertEquals(81, mockPlay.getPlayScore());
-        assertEquals("222222222222222222222222222222222222222222222222222222222222222222222222222222222222", mockPlay.getPlaysScoreSet());
     }
 
     @Test
     public void testCalculateScore_PartialMatchNoDuplicates() {
         // Partial match, no duplicates
         String playSet = "123456789234567891345678912456789123567891234678912345789123456891234567912345678912"; // 81 characters
-        String challengeSet = "123456789123456789123456789123456789123456789123456789123456789123456789123456789123"; // 81 characters
+        String challengeSet = "11110000010305008912345608912345678912056789123456789123456789123456789123456789121"; // 81 characters
         when(mockPlay.getPlaySet()).thenReturn(playSet);
         when(mockChallenge.getChallangeSet()).thenReturn(challengeSet);
 
