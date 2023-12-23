@@ -21,6 +21,28 @@ The Goal of this project was to explore the Interactions between backend and fro
   - Codium for testin puropses
   - Roles and responsibilities
 
+#### Backend Technology
+Springboot is a Stable evironment that moks up a local bacckend server so that the code can be tested in a deployment like environment, Dependencies can easily be defined in the pom.xml file taking a lot of work off the developerss hand piecing to gether basic functionality.
+In this case we Used Hiberate and a JPA connection to talk to the mysql backend via entity classes and jpa repository generated methods which makes the actuall calls to the backend @Transactional i used to make sure a call is performed ACID in case of conflicting calls such as Deletionsacross multiple tables
+
+The backend uses Spring security co create a security pipeline and validation trogh a token system where an valid token indicates that the user has been validated with in the time frame alloweble to that token
+
+Springboot Starter validation ensures that the project only starts up when major problems are adressed, provides absolutelly llegible and horrible eror messages.
+SpringDataRest is used to set up the data repositories
+
+
+
+
+#### Frontend Technology
+
+The frontend is based on Java Script HTML and CSS in a react frame work runnng on a vite mok Server that responsively delivers changes in the code base to the Browser at localhost. 
+
+The major differaerance between Vite and React in providing the applicationto the Browser is that react rebuilds the application itself after you update a file while vite sends the file to the browser seperately aand uses the brosers internal tools to build the Dom. 
+
+We use axios to sent http requests to the backend via Http requests.
+The router component was used to create a navigation trough the frontend and limit the visibility unauthorized pages.
+
+
 ### Requirements
 
 **Functional**
@@ -127,14 +149,24 @@ Progress was measure by Partial User story completion meaning that with the guid
 ## Review
 **Performance Analysis**
   - Key performance indicators
+This project was noticably a first of it's kind and as such took inovation and trial and error. The Planning a head was roughly guided and not very accurate.
+for future project sit is imperative to adhere to standart naming conventions to avoid simple naming problems, automatic function genertion can be finiky when variables are named creatively
+
   - Performance reports
+The application is up and running but it is not pretty for such a small application to stil have a number of bugs shows that the development process was not a smooth one. Early definitions of donne nad Coding standarts have to be Implemented 
 
   - Stakeholder feedback
-  - User feedback
+TBD
 
 # Detail Aknowlegements
 
 [OpenAI](https://www.openai.com) - For out standing aid in formating nd many  questionss that would have taken hours of search  
-[United Top Tech](https://youtu.be/GXxT8U7_OlE?si=1wjzbbiRsGYDM_j4) - Invaluable input to create the ORM and pointer to Lombok  
+
+ With the tight deadline of this Project long searches in the Documentation of every asect of the frameworks provided functionallity woud have been too costly and as such ChatGPT provided invaluable feed back and explanations of certain annotations and features as well as providing specific implementatin ideas for example for the Authentification provider in the frontend how to handle it in the routes system.
+
+[United Top Tech](https://youtu.be/GXxT8U7_OlE?si=1wjzbbiRsGYDM_j4) - Invaluable input to create the ORM and pointer to Lombok    
 [Project Lombok](https://projectlombok.org/features/) - Refferance to the avliable annotations reducing boilerplate
-[JavaTpoint](https://www.javatpoint.com/spring-boot-annotations) - 
+This pointed to a very usefull reasource to streamline my code and make it standardized and looking de cluttered
+
+[JavaTpoint](https://www.javatpoint.com/spring-boot-annotations) 
+Helped with specific springboot implementations
